@@ -1,0 +1,21 @@
+{
+  "name": "node_demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cowsay": "^1.5.0",
+    "express": "^4.17.3",
+    "mongodb": "^4.4.1",
+    "mongoose": "^6.2.8",
+    "node-fetch": "^2.6.7",
+    "pg": "^8.7.3",
+    "pug": "^3.0.2"
+  }
+}
