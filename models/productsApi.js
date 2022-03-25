@@ -1,7 +1,7 @@
 //Añadir el código para hablar con la BBDD
 const mongoose = require('mongoose');
 
-const objectSchema = {
+const productSchema = new mongoose.Schema({
     id: {
         type: Number,
         required: true,
@@ -29,53 +29,47 @@ const objectSchema = {
         }
     },
     company:{
-        companyName:{
-            type: String,
-            required: true,
-            company: {
-                type:mongoose.Schema.Types.ObjectId,
-                ref: "Company"
-            }
-        },
-        website:{
-            type: String,
-            required: true,
-            web: {
-                type:mongoose.Schema.Types.ObjectId,
-                ref: "Company"
-            }
+                type: mongoose.Types.ObjectId,
+                required: true,
+                ref: "Company" 
         }
 
-    }
-};
+});
 
-const companyEsquema = {
+const companySchema = new mongoose.Schema({
     companyName:{         
             type: String,
-            required: true
+            required: true,
+            unique: true
         },
     website:{
         type: String,
-        required: true
+        required: true,
+        unique:true
     }
-}
+});
+
 // Crear el esquema
-const productSchema = mongoose.Schema(objectSchema);
-const companySchema = mongoose.Schema(companyEsquema);
+// const productSchema = mongoose.Schema(objecSchema);
+// const companySchema = mongoose.Schema(companyEsquema);
+
 // Crear el modelo
 const ProductApi = mongoose.model('Product', productSchema);
-const company = mongoose.model('Company',companySchema);
+const companies = mongoose.model('Company',companySchema);
 
-ProductApi.
-  findOne({ title: 'test product' }).
-  populate('Company').
-  exec(function (err, product) {
-    if (err) return handleError(err);
-    console.log('The company is ', product.company);
-  });
+// ProductApi.
+//   find({}).
+//   populate('Company').
+//   exec(function (err, ProductApi) {
+//     res.status(200).send(ProductApi)
+//   });
 
+const exportar = {
+    ProductApi,
+    companies
+};
 
-module.exports = ProductApi;
+module.exports = exportar;
 
 
 
